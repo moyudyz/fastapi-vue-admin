@@ -1,0 +1,28 @@
+[tool.poetry]
+name = "server"
+version = "0.1.0"
+description = "fastapi-vue-admin-server"
+authors = ["董雨周 <3030590755@qq.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+fastapi = "^0.61.2"
+PyYAML = "^5.3.1"
+pydantic = {extras = ["email"], version = "^1.7.2"}
+loguru = "^0.5.3"
+uvicorn = "^0.12.3"
+tortoise-orm = {extras = ["asyncpg"], version = "^0.16.18"}
+ciso8601 = "^2.1.3"
+python-rapidjson = "^0.9.4"
+aioredis = "^1.3.1"
+
+[tool.poetry.dev-dependencies]
+black = {version = "^20.8b1", allow-prereleases = true}
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[[tool.poetry.source]]
+name = "ali"
+url = "https://mirrors.aliyun.com/pypi/simple/"
