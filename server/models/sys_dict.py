@@ -4,10 +4,10 @@ Version: 1.0
 Autor: Moyu
 Date: 2020-11-23 13:27:27
 LastEditors: Moyu
-LastEditTime: 2020-11-23 13:44:29
+LastEditTime: 2020-11-24 13:16:43
 '''
 from tortoise import fields
-from .mixin import AbstractBaseModel, DateModelMixin
+from models.mixin import AbstractBaseModel, DateModelMixin
 
 
 class SysDict(DateModelMixin, AbstractBaseModel):

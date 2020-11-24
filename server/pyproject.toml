@@ -6,7 +6,7 @@ authors = ["董雨周 <3030590755@qq.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.8"
-fastapi = "^0.61.2"
+fastapi = {extras = ["orjson"], version = "^0.61.2"}
 PyYAML = "^5.3.1"
 pydantic = {extras = ["email"], version = "^1.7.2"}
 loguru = "^0.5.3"
@@ -15,6 +15,10 @@ tortoise-orm = {extras = ["asyncpg"], version = "^0.16.18"}
 ciso8601 = "^2.1.3"
 python-rapidjson = "^0.9.4"
 aioredis = "^1.3.1"
+aerich = "^0.3.3"
+PyJWT = "^1.7.1"
+passlib = "^1.7.4"
+orjson = "^3.4.3"
 
 [tool.poetry.dev-dependencies]
 black = {version = "^20.8b1", allow-prereleases = true}

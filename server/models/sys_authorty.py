@@ -4,10 +4,10 @@ Version: 1.0
 Autor: Moyu
 Date: 2020-11-21 17:07:41
 LastEditors: Moyu
-LastEditTime: 2020-11-23 15:41:11
+LastEditTime: 2020-11-24 13:16:53
 '''
 from tortoise import fields
-from .mixin import AbstractBaseModel, DateModelMixin
+from models.mixin import AbstractBaseModel, DateModelMixin
 
 
 class SysAuthorty(DateModelMixin, AbstractBaseModel):
@@ -16,9 +16,9 @@ class SysAuthorty(DateModelMixin, AbstractBaseModel):
         'models.SysAuthorty', related_name='children', null=True
     )
     children: fields.ReverseRelation['SysAuthorty']
-    sys_menus: fields.ManyToManyRelation['SysMenus'] = fields.ManyToManyField(
-        'models.SysMenus', through='sys_authorty_menu'
+    sys_menus: fields.ManyToManyRelation['SysMenu'] = fields.ManyToManyField(
+        'models.SysMenu', through='sys_authorty_menu'
     )
 
     class Meta:
-        table = "sys_group"
+        table = "sys_authorty"

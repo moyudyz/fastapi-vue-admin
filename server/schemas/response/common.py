@@ -6,7 +6,8 @@ Date: 2020-11-23 11:58:44
 LastEditors: Moyu
 LastEditTime: 2020-11-23 12:02:00
 '''
-from typing import List, Any
+from typing import Any, List
+
 from pydantic import BaseModel
 
 

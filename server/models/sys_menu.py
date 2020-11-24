@@ -4,11 +4,11 @@ Version: 1.0
 Autor: Moyu
 Date: 2020-11-21 17:55:55
 LastEditors: Moyu
-LastEditTime: 2020-11-23 15:46:05
+LastEditTime: 2020-11-24 13:16:34
 '''
 from enum import IntEnum
 from tortoise import fields
-from .mixin import AbstractBaseModel, DateModelMixin
+from models.mixin import AbstractBaseModel, DateModelMixin
 
 
 class SysMenu(DateModelMixin, AbstractBaseModel):

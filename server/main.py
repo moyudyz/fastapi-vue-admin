@@ -4,7 +4,7 @@ Version: 1.0
 Autor: Moyu
 Date: 2020-11-21 11:38:19
 LastEditors: Moyu
-LastEditTime: 2020-11-23 17:02:37
+LastEditTime: 2020-11-24 11:57:42
 '''
 from fastapi import FastAPI
 from starlette.middleware.cors import CORSMiddleware
@@ -27,19 +27,7 @@ app = FastAPI(
 register_tortoise(
     app,
     db_url=settings.DB_URI,
-    modules={
-        "models": [
-            "SysUser",
-            "SysApi",
-            "SysAuthorty",
-            "SysDict",
-            "SysDictDetail",
-            "JwtBlackList",
-            "SysMenu",
-            "SysMenuParams",
-            "SysOperationRecord",
-        ]
-    },
+    modules={"models": ["models"]},
 )
 
 # 注册CORS中间件
@@ -64,4 +52,4 @@ register_middleware(app)
 if __name__ == "__main__":
     import uvicorn
 
-    uvicorn.run(app='main:app', host="0.0.0.0", port=8000, reload=False, debug=False)
+    uvicorn.run(app=app, host="0.0.0.0", port=8000, reload=False, debug=False)

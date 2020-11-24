@@ -4,7 +4,7 @@ Version: 1.0
 Autor: Moyu
 Date: 2020-11-21 15:13:04
 LastEditors: Moyu
-LastEditTime: 2020-11-23 15:58:10
+LastEditTime: 2020-11-24 17:20:28
 '''
 import yaml
 import secrets
@@ -71,8 +71,8 @@ class Settings(BaseSettings):
     # =============超级管理员================
     FIRST_SUPERUSER: str = "admin"
     FIRST_SUPERUSER_PASSWORD: str = "admin"
-    USERS_OPEN_REGISTRATION: bool = False
-
+    USERS_OPEN_REGISTRATION: bool = False  # 开放注册
+    USER_MULTIPOINT: bool = False  # 多点登陆
     SENTRY_DSN: str = None
 
     class Config:
@@ -80,3 +80,15 @@ class Settings(BaseSettings):
 
 
 settings = Settings(**data)
+
+
+TORTOISE_ORM = {
+    "connections": {"default": settings.DB_URI},
+    "apps": {
+        "models": {
+            "models": ["aerich.models", "models"],
+            # 须添加“aerich.models” 后者“models”是上述models.py文件的路径
+            "default_connection": "default",
+        },
+    },
+}

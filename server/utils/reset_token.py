@@ -4,13 +4,13 @@ Version: 1.0
 Autor: Moyu
 Date: 2020-11-23 11:52:12
 LastEditors: Moyu
-LastEditTime: 2020-11-23 11:52:14
+LastEditTime: 2020-11-24 16:41:34
 '''
 from datetime import datetime, timedelta
 from typing import Optional
 
+import jwt
 from core.config import settings
-from jose import jwt
 
 
 def generate_password_reset_token(email: str) -> str:
@@ -23,12 +23,12 @@ def generate_password_reset_token(email: str) -> str:
         settings.SECRET_KEY,
         algorithm="HS256",
     )
-    return encoded_jwt
+    return encoded_jwt.decode("utf-8")
 
 
 def verify_password_reset_token(token: str) -> Optional[str]:
     try:
         decoded_token = jwt.decode(token, settings.SECRET_KEY, algorithms=["HS256"])
         return decoded_token["email"]
-    except jwt.JWTError:
+    except:
         return None

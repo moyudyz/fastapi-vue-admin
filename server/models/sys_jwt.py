@@ -4,10 +4,10 @@ Version: 1.0
 Autor: Moyu
 Date: 2020-11-23 13:27:27
 LastEditors: Moyu
-LastEditTime: 2020-11-23 13:29:51
+LastEditTime: 2020-11-24 13:12:58
 '''
 from tortoise import fields
-from .mixin import AbstractBaseModel, DateModelMixin
+from models.mixin import AbstractBaseModel, DateModelMixin
 
 
 class JwtBlackList(DateModelMixin, AbstractBaseModel):

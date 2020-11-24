@@ -7,7 +7,7 @@ LastEditors: Moyu
 LastEditTime: 2020-11-23 15:36:18
 '''
 from tortoise import fields
-from .mixin import AbstractBaseModel, DateModelMixin
+from models.mixin import AbstractBaseModel, DateModelMixin
 
 
 class SysCasbin(AbstractBaseModel):
