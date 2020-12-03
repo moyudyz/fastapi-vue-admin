@@ -3,12 +3,11 @@ SECRET_KEY: kTmgyZlgXHGi6EtpfRaewioJJTsHnPds
 
 # 数据库
 DB_SERVER: "localhost"
-DB_USER: "postgres"
+DB_USER: "root"
 DB_PASSWORD: "123456"
-DB_PORT: "54321"
-DB_NAME: "fastapi-vue-admin"
-# DB_URI: "mysql://root:123456@127.0.0.1:3306/bee_db_prod?charset=utf8mb4"
-DB_URI: "postgres://postgres:123456@localhost:54321/fastapi-vue-admin"
+DB_PORT: "3306"
+DB_NAME: "bee_v2_db"
+DB_URI: "mysql://root:123456@localhost:3306/bee_v2_db?charset=utf8mb4"
 
 # Redis
 REDIS_URL: 'redis://root:@127.0.0.1:6379/0?encoding=utf-8"'

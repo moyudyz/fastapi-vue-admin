@@ -9,6 +9,7 @@ LastEditTime: 2020-11-24 13:16:34
 from enum import IntEnum
 from tortoise import fields
 from models.mixin import AbstractBaseModel, DateModelMixin
+from tortoise.contrib.pydantic import pydantic_model_creator, pydantic_queryset_creator
 
 
 class SysMenu(DateModelMixin, AbstractBaseModel):
@@ -20,16 +21,32 @@ class SysMenu(DateModelMixin, AbstractBaseModel):
     title = fields.CharField(max_length=255, description='展示名称')
     icon = fields.CharField(max_length=255, description='图标')
     keep_alive = fields.BooleanField(default=False, description='是否缓存')
-
-    keep_alive = fields.CharField(max_length=255, description='是否缓存')
-    parent: fields.ForeignKeyRelation['SysMenu'] = fields.ForeignKeyField(
+    parent: fields.ForeignKeyNullableRelation['SysMenu'] = fields.ForeignKeyField(
         'models.SysMenu', related_name='children', null=True
     )
     children: fields.ReverseRelation['SysMenu']
     params: fields.ReverseRelation['SysMenuParams']
 
+    def meta(self) -> dict:
+        return {"title": self.title, "icon": self.icon, "keep_alive": self.keep_alive}
+
     class Meta:
         table = "sys_menu"
+
+    class PydanticMeta:
+        # exclude = (
+        #     "parent",
+        #     "created_at",
+        #     "updated_at",
+        #     "deleted_at",
+        #     "sort",
+        #     "title",
+        #     "icon",
+        #     "keep_alive",
+        # )
+        # computed = ("meta",)
+        allow_cycles = True
+        max_recursion = 3
 
 
 class ParamTypeEnum(IntEnum):
@@ -45,3 +62,38 @@ class SysMenuParams(DateModelMixin, AbstractBaseModel):
 
     class Meta:
         table = "sys_menu_params"
+
+
+SysMenu_Pydantic = pydantic_model_creator(
+    SysMenu,
+    exclude=(
+        "id",
+        "parent",
+        "created_at",
+        "updated_at",
+        "deleted_at",
+        "sort",
+        "title",
+        "icon",
+        "keep_alive",
+    ),
+    computed=("meta",),
+)
+print(SysMenu_Pydantic.schema_json())
+
+SysMenu_List_Pydantic = pydantic_queryset_creator(
+    SysMenu,
+    exclude=(
+        "id",
+        "parent",
+        "created_at",
+        "updated_at",
+        "deleted_at",
+        "sort",
+        "title",
+        "icon",
+        "keep_alive",
+    ),
+    computed=("meta",),
+    allow_cycles=True,
+)

@@ -1,18 +1,22 @@
-'''
-Description: 通用响应模型
-Version: 1.0
-Autor: Moyu
-Date: 2020-11-23 11:58:44
-LastEditors: Moyu
-LastEditTime: 2020-11-23 12:02:00
-'''
+from datetime import datetime
 from typing import Any, List
 
 from pydantic import BaseModel
 
 
-class PageResult(BaseModel):
+class AbstractResponse(BaseModel):
+    class Config:
+        json_encoders = {datetime: lambda v: v.strftime('%Y-%m-%d %H:%M:%S')}
+
+
+class AbstractPageResult(AbstractResponse):
     items: List[Any] = []
     total: int = 0
     page: int = 0
     page_size: int = 0
+
+
+class ErrorMessageModel(BaseModel):
+    code: str
+    message: str
+    detail: Any = None

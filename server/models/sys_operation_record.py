@@ -4,7 +4,7 @@ Version: 1.0
 Autor: Moyu
 Date: 2020-11-23 13:48:06
 LastEditors: Moyu
-LastEditTime: 2020-11-24 13:13:05
+LastEditTime: 2020-11-25 10:14:45
 '''
 from tortoise import fields
 from models.mixin import AbstractBaseModel, DateModelMixin
@@ -20,7 +20,7 @@ class SysOperationRecord(DateModelMixin, AbstractBaseModel):
     error_message = fields.CharField(max_length=255, null=True, description='错误信息')
     body = fields.TextField(max_length=100, description='请求Body')
     resp = fields.TextField(max_length=100, description='响应Body')
-    sys_user: fields.ForeignKeyRelation['SysUser'] = fields.ForeignKeyField(
+    sys_user: fields.ForeignKeyRelation['models.SysUser'] = fields.ForeignKeyField(
         'models.SysUser', description='用户'
     )
 

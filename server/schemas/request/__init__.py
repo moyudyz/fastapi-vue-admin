@@ -8,3 +8,4 @@ LastEditTime: 2020-11-24 15:34:44
 '''
 from .common import *
 from .sys_user import *
+from .sys_menu import *

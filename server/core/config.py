@@ -4,7 +4,7 @@ Version: 1.0
 Autor: Moyu
 Date: 2020-11-21 15:13:04
 LastEditors: Moyu
-LastEditTime: 2020-11-24 17:20:28
+LastEditTime: 2020-11-30 16:14:38
 '''
 import yaml
 import secrets
@@ -39,6 +39,7 @@ class Settings(BaseSettings):
     DB_NAME: str
     DB_URI: str = None
 
+    @classmethod
     @validator("DB_URI", pre=True)
     def assemble_db_connection(cls, v: Optional[str], values: Dict[str, Any]) -> Any:
         if isinstance(v, str):

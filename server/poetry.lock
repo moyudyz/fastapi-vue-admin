@@ -15,6 +15,20 @@ tortoise-orm = "*"
 dbdrivers = ["aiomysql", "asyncpg"]
 
 [[package]]
+name = "aiomysql"
+version = "0.0.21"
+description = "MySQL driver for asyncio."
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+PyMySQL = ">=0.9,<=0.9.3"
+
+[package.extras]
+sa = ["sqlalchemy (>=1.0)"]
+
+[[package]]
 name = "aioredis"
 version = "1.3.1"
 description = "asyncio (PEP 3156) Redis support"
@@ -52,19 +66,6 @@ description = "Timeout context manager for asyncio programs"
 category = "main"
 optional = false
 python-versions = ">=3.5.3"
-
-[[package]]
-name = "asyncpg"
-version = "0.21.0"
-description = "An asyncio PostgreSQL driver"
-category = "main"
-optional = false
-python-versions = ">=3.5.0"
-
-[package.extras]
-dev = ["Cython (0.29.20)", "pytest (>=3.6.0)", "Sphinx (>=1.7.3,<1.8.0)", "sphinxcontrib-asyncio (>=0.2.0,<0.3.0)", "sphinx-rtd-theme (>=0.2.4,<0.3.0)", "pycodestyle (>=2.5.0,<2.6.0)", "flake8 (>=3.7.9,<3.8.0)", "uvloop (>=0.14.0,<0.15.0)"]
-docs = ["Sphinx (>=1.7.3,<1.8.0)", "sphinxcontrib-asyncio (>=0.2.0,<0.3.0)", "sphinx-rtd-theme (>=0.2.4,<0.3.0)"]
-test = ["pycodestyle (>=2.5.0,<2.6.0)", "flake8 (>=3.7.9,<3.8.0)", "uvloop (>=0.14.0,<0.15.0)"]
 
 [[package]]
 name = "black"
@@ -272,6 +273,17 @@ flake8 = ["flake8", "flake8-import-order", "pep8-naming"]
 test = ["pytest (>=4.0.1,<5.0.0)", "pytest-cov (>=2.6.0,<3.0.0)", "pytest-runner (>=4.2,<5.0.0)"]
 
 [[package]]
+name = "pymysql"
+version = "0.9.3"
+description = "Pure Python MySQL Driver"
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.extras]
+rsa = ["cryptography"]
+
+[[package]]
 name = "pypika"
 version = "0.44.0"
 description = "A SQL query builder API for Python"
@@ -339,8 +351,8 @@ optional = false
 python-versions = ">=3.7,<4.0"
 
 [package.dependencies]
+aiomysql = {version = "*", optional = true, markers = "extra == \"aiomysql\""}
 aiosqlite = ">=0.16.0,<0.17.0"
-asyncpg = {version = "*", optional = true, markers = "extra == \"asyncpg\""}
 iso8601 = ">=0.1.13,<0.2.0"
 pypika = ">=0.44.0,<0.45.0"
 pytz = ">=2020.4,<2021.0"
@@ -396,12 +408,16 @@ dev = ["pytest (>=4.6.2)", "black (>=19.3b0)"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "a2fbce8883a13602a35b3a9650e71c1327db541bb4feef16f0c44173392abe20"
+content-hash = "47f63ec861b593f0628f9037baa1b2e6cc30a3c100bce5e046da308ea3a46415"
 
 [metadata.files]
 aerich = [
     {file = "aerich-0.3.3-py3-none-any.whl", hash = "sha256:ad82e2cb55858017f77860b4fcb0270610b4107c97e2e03d44c5ff8a182cb91d"},
     {file = "aerich-0.3.3.tar.gz", hash = "sha256:bea87cfad0aa24f74b41f14c234f458f0189a1baa417b91e4417cd255a8a2ee6"},
+]
+aiomysql = [
+    {file = "aiomysql-0.0.21-py3-none-any.whl", hash = "sha256:a81a97da3dd732635926a8ea6adbbf2d1345799680bf61b5f89e730bcec88cc5"},
+    {file = "aiomysql-0.0.21.tar.gz", hash = "sha256:811569c0db118dd2685f0878f5cebf17a11e89a995fa14261d5fa0254113842c"},
 ]
 aioredis = [
     {file = "aioredis-1.3.1-py3-none-any.whl", hash = "sha256:b61808d7e97b7cd5a92ed574937a079c9387fdadd22bfbfa7ad2fd319ecc26e3"},
@@ -418,33 +434,6 @@ appdirs = [
 async-timeout = [
     {file = "async-timeout-3.0.1.tar.gz", hash = "sha256:0c3c816a028d47f659d6ff5c745cb2acf1f966da1fe5c19c77a70282b25f4c5f"},
     {file = "async_timeout-3.0.1-py3-none-any.whl", hash = "sha256:4291ca197d287d274d0b6cb5d6f8f8f82d434ed288f962539ff18cc9012f9ea3"},
-]
-asyncpg = [
-    {file = "asyncpg-0.21.0-cp35-cp35m-macosx_10_13_x86_64.whl", hash = "sha256:09badce47a4645cfe523cc8a182bd047d5d62af0caaea77935e6a3c9e77dc364"},
-    {file = "asyncpg-0.21.0-cp35-cp35m-manylinux1_i686.whl", hash = "sha256:6b7807bfedd24dd15cfb2c17c60977ce01410615ecc285268b5144a944ec97ff"},
-    {file = "asyncpg-0.21.0-cp35-cp35m-manylinux1_x86_64.whl", hash = "sha256:dfd491e9865e64a3e91f1587b1d88d71dde1cfb850429253a73d4d44b98c3a0f"},
-    {file = "asyncpg-0.21.0-cp35-cp35m-manylinux2014_aarch64.whl", hash = "sha256:8587e206d78e739ca83a40c9982e03b28f8904c95a54dc782da99e86cf768f73"},
-    {file = "asyncpg-0.21.0-cp35-cp35m-win32.whl", hash = "sha256:b1b10916c006e5c2c0dcd5dadeb38cbf61ecd20d66c50164e82f31c22c7e329d"},
-    {file = "asyncpg-0.21.0-cp35-cp35m-win_amd64.whl", hash = "sha256:22d161618b59e4b56fb2a5cc956aa9eeb336d07cae924a5b90c9aa1c2d137f15"},
-    {file = "asyncpg-0.21.0-cp36-cp36m-macosx_10_13_x86_64.whl", hash = "sha256:f2d1aa890ffd1ad062a38b7ff7488764b3da4b0a24e0c83d7bbb1d1a6609df15"},
-    {file = "asyncpg-0.21.0-cp36-cp36m-manylinux1_i686.whl", hash = "sha256:e7bfb9269aeb11d78d50accf1be46823683ced99209b7199e307cdf7da849522"},
-    {file = "asyncpg-0.21.0-cp36-cp36m-manylinux1_x86_64.whl", hash = "sha256:68f7981f65317a5d5f497ec76919b488dbe0e838f8b924e7517a680bdca0f308"},
-    {file = "asyncpg-0.21.0-cp36-cp36m-manylinux2014_aarch64.whl", hash = "sha256:a4c1feb285ec3807ecd5b54ab718a3d065bb55c93ebaf800670eadde31484be8"},
-    {file = "asyncpg-0.21.0-cp36-cp36m-win32.whl", hash = "sha256:dddf4d4c5e781310a36529c3c87c1746837c2d2c7ec0f2ec4e4f06450d83c50a"},
-    {file = "asyncpg-0.21.0-cp36-cp36m-win_amd64.whl", hash = "sha256:7ee29c4707eb8fb3d3a0348ac4495e06f4afaca3ee38c3bebedc9c8b239125ff"},
-    {file = "asyncpg-0.21.0-cp37-cp37m-macosx_10_13_x86_64.whl", hash = "sha256:4421407b07b4e22291a226d9de0bf6f3ea8158aa1c12d83bfedbf5c22e13cd55"},
-    {file = "asyncpg-0.21.0-cp37-cp37m-manylinux1_i686.whl", hash = "sha256:aa2e0cb14c01a2f58caeeca7196681b30aa22dd22c82845560b401df5e98e171"},
-    {file = "asyncpg-0.21.0-cp37-cp37m-manylinux1_x86_64.whl", hash = "sha256:28584783dd0d21b2a0db3bfe54fb12f21425a4cc015e4419083ea99e6de0de9b"},
-    {file = "asyncpg-0.21.0-cp37-cp37m-manylinux2014_aarch64.whl", hash = "sha256:915cebc8a7693c8a5e89804fa106678dbedcc50d0270ebab0b75f16e668bd59b"},
-    {file = "asyncpg-0.21.0-cp37-cp37m-win32.whl", hash = "sha256:308b8ba32c42ea1ed84c034320678ec307296bb4faf3fbbeb9f9e20b46db99a5"},
-    {file = "asyncpg-0.21.0-cp37-cp37m-win_amd64.whl", hash = "sha256:888593b6688faa7ec1c97ff7f2ca3b5a5b8abb15478fe2a13c5012b607a28737"},
-    {file = "asyncpg-0.21.0-cp38-cp38-macosx_10_13_x86_64.whl", hash = "sha256:ecd5232cf64f58caac3b85103f1223fdf20e9eb43bfa053c56ef9e5dd76ab099"},
-    {file = "asyncpg-0.21.0-cp38-cp38-manylinux1_i686.whl", hash = "sha256:3ade59cef35bffae6dbc6f5f3ef56e1d53c67f0a7adc3cc4c714f07568d2d717"},
-    {file = "asyncpg-0.21.0-cp38-cp38-manylinux1_x86_64.whl", hash = "sha256:ea26604932719b3612541e606508d9d604211f56a65806ccf8c92c64104f4f8a"},
-    {file = "asyncpg-0.21.0-cp38-cp38-manylinux2014_aarch64.whl", hash = "sha256:7e51d1a012b779e0ebf0195f80d004f65d3c60cc06f0fa1cef9d3e536262abbd"},
-    {file = "asyncpg-0.21.0-cp38-cp38-win32.whl", hash = "sha256:615c7e3adb46e1f2e3aff45e4ee9401b4f24f9f7153e5530a0753369be72a5c6"},
-    {file = "asyncpg-0.21.0-cp38-cp38-win_amd64.whl", hash = "sha256:823eca36108bd64a8600efe7bbf1230aa00f2defa3be42852f3b61ab40cf1226"},
-    {file = "asyncpg-0.21.0.tar.gz", hash = "sha256:53cb2a0eb326f61e34ef4da2db01d87ce9c0ebe396f65a295829df334e31863f"},
 ]
 black = [
     {file = "black-20.8b1.tar.gz", hash = "sha256:1c02557aa099101b9d21496f8a914e9ed2222ef70336404eeeac8edba836fbea"},
@@ -595,6 +584,10 @@ pydantic = [
 pyjwt = [
     {file = "PyJWT-1.7.1-py2.py3-none-any.whl", hash = "sha256:5c6eca3c2940464d106b99ba83b00c6add741c9becaec087fb7ccdefea71350e"},
     {file = "PyJWT-1.7.1.tar.gz", hash = "sha256:8d59a976fb773f3e6a39c85636357c4f0e242707394cadadd9814f5cbaa20e96"},
+]
+pymysql = [
+    {file = "PyMySQL-0.9.3-py2.py3-none-any.whl", hash = "sha256:3943fbbbc1e902f41daf7f9165519f140c4451c179380677e6a848587042561a"},
+    {file = "PyMySQL-0.9.3.tar.gz", hash = "sha256:d8c059dcd81dedb85a9f034d5e22dcb4442c0b201908bede99e306d65ea7c8e7"},
 ]
 pypika = [
     {file = "pypika-0.44.0.tar.gz", hash = "sha256:3d49f12d2b9f08054d8bedf7ce6e8e900ac3dd8274fc23746ece9d124e29b7e5"},

@@ -4,7 +4,7 @@ Version: 1.0
 Autor: Moyu
 Date: 2020-11-23 11:57:31
 LastEditors: Moyu
-LastEditTime: 2020-11-24 17:28:02
+LastEditTime: 2020-11-25 13:48:40
 '''
 # import pkgutil
 
@@ -13,5 +13,5 @@ LastEditTime: 2020-11-24 17:28:02
 # ):
 #     exec('from .' + modname + ' import *')
 from .common import *
-from .response import *
 from .sys_user import *
+from .sys_menu import *

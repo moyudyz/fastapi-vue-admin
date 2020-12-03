@@ -4,16 +4,17 @@ Version: 1.0
 Autor: Moyu
 Date: 2020-11-23 12:03:14
 LastEditors: Moyu
-LastEditTime: 2020-11-23 12:38:47
+LastEditTime: 2020-12-02 10:39:40
 '''
 from typing import Any, List
 
+from fastapi import Body
 from pydantic import BaseModel
 
 
 class PageInfo(BaseModel):
     page: int = 1
-    page_size: int = 15
+    size: int = 10
 
 
 class GetById(BaseModel):

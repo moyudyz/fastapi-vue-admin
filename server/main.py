@@ -14,6 +14,7 @@ from api import api_router
 from core.config import settings
 from utils.custom_exc import register_exc
 from utils.middleware import register_middleware
+from tortoise import Tortoise
 
 app = FastAPI(
     title=settings.PROJECT_NAME,
@@ -29,6 +30,8 @@ register_tortoise(
     db_url=settings.DB_URI,
     modules={"models": ["models"]},
 )
+# Tortoise.init_models(["models"], "models")
+a = Tortoise.describe_models()
 
 # 注册CORS中间件
 if settings.BACKEND_CORS_ORIGINS:

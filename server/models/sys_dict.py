@@ -15,7 +15,7 @@ class SysDict(DateModelMixin, AbstractBaseModel):
     key = fields.CharField(max_length=255, description='英文名')
     status = fields.BooleanField(default=True, description='状态')
     desc = fields.CharField(max_length=255, description='描述')
-    sys_dict_details: fields.ReverseRelation['SysDictDetail']
+    sys_dict_details: fields.ReverseRelation['models.SysDictDetail']
 
     class Meta:
         table = 'sys_dict'

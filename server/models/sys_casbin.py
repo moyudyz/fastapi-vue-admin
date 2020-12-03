@@ -4,7 +4,7 @@ Version: 1.0
 Autor: Moyu
 Date: 2020-11-23 14:07:02
 LastEditors: Moyu
-LastEditTime: 2020-11-23 15:36:18
+LastEditTime: 2020-12-02 11:28:31
 '''
 from tortoise import fields
 from models.mixin import AbstractBaseModel, DateModelMixin
@@ -12,7 +12,7 @@ from models.mixin import AbstractBaseModel, DateModelMixin
 
 class SysCasbin(AbstractBaseModel):
     ptype = fields.CharField(max_length=255, default='p', source_field='p_type')
-    sys_authority_id = fields.CharField(max_length=255, null=True, source_field='v0')
+    sys_authoritiy_id = fields.CharField(max_length=255, null=True, source_field='v0')
     path = fields.CharField(max_length=255, null=True, source_field='v1')
     method = fields.CharField(max_length=255, null=True, source_field='v2')
     v3 = fields.CharField(max_length=255, null=True, source_field='v3')
